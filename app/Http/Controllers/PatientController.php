@@ -8,6 +8,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Http;
 
 class PatientController extends Controller
 {
@@ -18,7 +19,8 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $patients = Patient::all();
+        $patients = Patient::paginate(10);
+
         return view('patients.patient', compact('patients'));
     }
 
@@ -30,6 +32,7 @@ class PatientController extends Controller
     public function create()
     {
         $patients = Patient::all();
+
         return view('patients.examination', compact('patients'));
     }
 
@@ -53,7 +56,23 @@ class PatientController extends Controller
         $examinations = Examination::where('patient_id', $patient->id)
             ->select($select)
             ->get();
-        //dd($examinations);
+
         return view('patients.examination', compact(['examinations', 'patient']));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @param Examination $examination
+     * @return Application|Factory|View|Response
+     */
+    public function showExaminationResult(Examination $examination)
+    {
+        $resultUrl = "http://127.0.0.1:5000/api/exam/$examination->id/desc";
+        $graphUrl = "http://127.0.0.1:5000/api/exam/$examination->id/graph";
+        $response = Http::get($resultUrl);
+        $result = $response->body();
+
+        return view('patients.result', compact(['result', 'graphUrl']));
     }
 }

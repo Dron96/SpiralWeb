@@ -18,7 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('patients', PatientController::class);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/exam/{examination}', [PatientController::class, 'showExaminationResult'])
+        ->name('exam.show');
+    Route::get('/patients/{patient}', [PatientController::class, 'show'])
+        ->name('patients.show');
+    Route::get('/patients', [PatientController::class, 'index'])
+        ->name('patients.index');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');

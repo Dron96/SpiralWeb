@@ -9,7 +9,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-                    <a class="btn btn-primary" href="{{ route('patients.create') }}">Добавить</a>
+                    <a class="btn btn-primary" href="{{ route('patients.index') }}">Добавить</a>
                 </nav>
                 <div class="card">
                     <div class="card-body">
@@ -40,5 +40,17 @@
                 </div>
             </div>
         </div>
+        @if($patients->total() > $patients->count())
+            <br>
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            {{ $patients->links() }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
     </div>
 @endsection
