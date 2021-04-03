@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExaminationController;
 use App\Http\Controllers\PatientController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,12 +20,16 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/exam/{examination}', [PatientController::class, 'showExaminationResult'])
-        ->name('exam.show');
-    Route::get('/patients/{patient}', [PatientController::class, 'show'])
-        ->name('patients.show');
+    Route::get('/exam/{examination}', [ExaminationController::class, 'showExaminationResult'])
+        ->name('exams.show');
+    Route::get('/{patient}', [ExaminationController::class, 'show'])
+        ->name('patient.show');
     Route::get('/patients', [PatientController::class, 'index'])
         ->name('patients.index');
+    Route::post('/patients', [PatientController::class, 'index'])
+        ->name('patient.create');
+    Route::post('/exams', [PatientController::class, 'index'])
+        ->name('exam.create');
 });
 
 Route::get('/dashboard', function () {

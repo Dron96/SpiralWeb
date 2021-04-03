@@ -78,10 +78,10 @@
                                             @case("A")
                                                 Алкогольсодержащие напитки
                                                 @break
-                                            @case("M")
+                                            @case("D")
                                                 Спиртосодержащие лекарства (валокордин, валосердин и тд)
                                                 @break
-                                            @case("F")
+                                            @case("P")
                                                 Физические нагрузки
                                                 @break
                                             @case("N")
@@ -90,7 +90,7 @@
                                         @endswitch
                                     </td>
                                     <td>
-                                        <a href="{{ route('exam.show', $exam) }}">
+                                        <a href="{{ route('exams.show', $exam) }}">
                                             {{ $exam->exam_date . " " . $exam->exam_time }}
                                         </a>
                                     </td>
