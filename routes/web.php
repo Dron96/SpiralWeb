@@ -26,10 +26,6 @@ Route::middleware(['auth'])->group(function () {
         ->name('patient.show');
     Route::get('/patients', [PatientController::class, 'index'])
         ->name('patients.index');
-    Route::post('/patients', [PatientController::class, 'index'])
-        ->name('patient.create');
-    Route::post('/exams', [PatientController::class, 'index'])
-        ->name('exam.create');
 });
 
 Route::get('/dashboard', function () {

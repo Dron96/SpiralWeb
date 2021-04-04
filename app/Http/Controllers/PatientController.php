@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PatientRequest;
 use App\Models\Patient;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -26,11 +28,13 @@ class PatientController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
-     * @return Response
+     * @param PatientRequest $request
+     * @return JsonResponse
      */
-    public function store(Request $request)
+    public function store(PatientRequest $request)
     {
-        return Patient::create($request->validated());
+        $patient = Patient::create($request->validated());
+
+        return response()->json($patient, 201);
     }
 }

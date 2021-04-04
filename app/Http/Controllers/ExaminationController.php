@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ExaminationRequest;
 use App\Models\Examination;
 use App\Models\Patient;
 use Illuminate\Contracts\Foundation\Application;
@@ -16,12 +17,14 @@ class ExaminationController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param ExaminationRequest $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(ExaminationRequest $request)
     {
-        return Patient::create($request->validated());
+        $validatedData = $request->validated();
+
+        return Patient::create($validatedData);
     }
 
     /**
