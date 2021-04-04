@@ -18,15 +18,14 @@ class Examination extends Migration
             $table->bigInteger('patient_id');
             $table->foreign('patient_id')->on('patients')->references('id')
                 ->onDelete('CASCADE')->onUpdate('CASCADE');
-            $table->char('hand', 1);
-            $table->string('spiral_type', 2);
+            $table->enum('hand', ['L', 'R', 'B']);
+            $table->enum('spiral_type', ['Cp', 'In', 'Sp']);
             $table->string('bad_effects', 6);
             $table->date('exam_date');
             $table->time('exam_time');
-            $table->boolean('sex');
             $table->timestamps();
 
-            $table->index([
+            $table->unique([
                 'patient_id',
                 'exam_date',
                 'exam_time'
@@ -41,6 +40,6 @@ class Examination extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('examinations');
     }
 }

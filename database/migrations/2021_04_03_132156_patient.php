@@ -15,16 +15,16 @@ class Patient extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
             $table->string('second_name');
+            $table->string('first_name');
             $table->string('middle_name');
             $table->date('dob');
-            $table->boolean('sex');
-            $table->char('dominant_hand', 1);
+            $table->enum('sex', ['male', 'female']);
+            $table->enum('dominant_hand', ['L', 'R', 'B']);
             $table->string('diagnosis');
             $table->timestamps();
 
-            $table->index([
+            $table->unique([
                 'first_name',
                 'second_name',
                 'middle_name',
@@ -41,6 +41,6 @@ class Patient extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('patients');
     }
 }

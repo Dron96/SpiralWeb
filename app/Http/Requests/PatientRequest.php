@@ -28,7 +28,7 @@ class PatientRequest extends FormRequest
             'second_name' => 'required|string',
             'middle_name' => 'required|string',
             'dob' => 'required|date',
-            'sex' => 'required|bool',
+            'sex' => 'required|in:male,female',
             'dominant_hand' => 'required|max:1|in:L,R,B',
             'diagnosis' => 'required|max:20'
         ];
