@@ -22,5 +22,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('patients', [PatientController::class, 'store'])
     ->name('patient.create');
+Route::get('patients', [PatientController::class, 'findPatient'])
+    ->name('patient.find');
 Route::post('exams', [ExaminationController::class, 'store'])
     ->name('exam.create');
+

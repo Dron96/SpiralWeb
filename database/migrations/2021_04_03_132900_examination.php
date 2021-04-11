@@ -23,6 +23,9 @@ class Examination extends Migration
             $table->string('bad_effects', 6);
             $table->date('exam_date');
             $table->time('exam_time');
+            $table->text('t');
+            $table->text('x');
+            $table->text('y');
             $table->timestamps();
 
             $table->unique([
