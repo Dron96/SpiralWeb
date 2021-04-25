@@ -15,18 +15,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/exam/{examination}', [ExaminationController::class, 'showExaminationResult'])
-        ->name('exams.show');
-    Route::get('/{patient}', [ExaminationController::class, 'show'])
-        ->name('patient.show');
-    Route::get('/patients', [PatientController::class, 'index'])
-        ->name('patients.index');
-});
+//Route::middleware(['auth'])->group(function () {
+//    Route::get('/exam/{examination}', [ExaminationController::class, 'showExaminationResult'])
+//        ->name('exams.show');
+//    Route::get('/{patient}', [ExaminationController::class, 'show'])
+//        ->name('patient.show');
+//    Route::get('/patients', [PatientController::class, 'index'])
+//        ->name('patients.index');
+//});
+//
+//Route::get('/dashboard', function () {
+//    return view('dashboard');
+//})->middleware(['auth'])->name('dashboard');
+
+Route::get('/', [PatientController::class, 'index'])
+    ->name('patients.index');
+
+Route::get('/exam/{examination}', [ExaminationController::class, 'showExaminationResult'])
+    ->name('exams.show');
+Route::get('/{patient}', [ExaminationController::class, 'show'])
+    ->name('patient.show');
+//Route::get('/patients', [PatientController::class, 'index'])
+//    ->name('patients.index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

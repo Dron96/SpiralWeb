@@ -29,7 +29,10 @@ class ExaminationRequest extends FormRequest
             'spiral_type' => 'required|max:2|string|in:Cp,In,Sp',
             'bad_effects' => 'required|string|max:6',
             'exam_date' => 'required|date',
-            'exam_time' => 'required'
+            'exam_time' => 'required',
+            'x' => 'required',
+            'y' => 'required',
+            't' => 'required'
         ];
     }
 }

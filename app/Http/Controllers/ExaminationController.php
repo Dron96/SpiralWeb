@@ -8,7 +8,6 @@ use App\Models\Patient;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Http;
 
@@ -24,7 +23,7 @@ class ExaminationController extends Controller
     {
         $validatedData = $request->validated();
 
-        return Patient::create($validatedData);
+        return Examination::create($validatedData);
     }
 
     /**
@@ -39,7 +38,7 @@ class ExaminationController extends Controller
             "id",
             "patient_id",
             "hand",
-            "type",
+            "spiral_type",
             "bad_effects",
             "exam_date",
             "exam_time"

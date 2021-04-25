@@ -52,7 +52,7 @@
                                         @endswitch
                                     </td>
                                     <td>
-                                        @switch($exam->type)
+                                        @switch($exam->spiral_type)
                                             @case("Sp")
                                                 Спираль
                                                 @break
