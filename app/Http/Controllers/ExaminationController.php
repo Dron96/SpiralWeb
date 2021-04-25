@@ -60,11 +60,12 @@ class ExaminationController extends Controller
      */
     public function showExaminationResult(Examination $examination)
     {
+        $patient = Patient::query()->find($examination->patient_id);
         $resultUrl = "http://127.0.0.1:5000/api/exam/$examination->id/desc";
         $graphUrl = "http://127.0.0.1:5000/api/exam/$examination->id/graph";
         $response = Http::get($resultUrl);
         $result = $response->body();
 
-        return view('patients.result', compact(['result', 'graphUrl']));
+        return view('patients.result', compact(['patient', 'examination', 'result', 'graphUrl']));
     }
 }

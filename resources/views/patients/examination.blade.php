@@ -11,9 +11,9 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-                    <a class="btn btn-primary" href="{{ route('patients.index') }}">Добавить</a>
-                </nav>
+{{--                <nav class="navbar navbar-toggleable-md navbar-light bg-faded">--}}
+{{--                    <a class="btn btn-primary" href="{{ route('patients.index') }}">Добавить</a>--}}
+{{--                </nav>--}}
                 <div class="card">
                     <div class="card-body">
 
@@ -65,29 +65,31 @@
                                         @endswitch
                                     </td>
                                     <td>
-                                        @switch($exam->bad_effects)
-                                            @case("C")
-                                                Кофе
-                                                @break
-                                            @case("E")
-                                                Энергетические напитки
-                                                @break
-                                            @case("S")
-                                                Сигареты, кальян, сигары и тд
-                                                @break
-                                            @case("A")
-                                                Алкогольсодержащие напитки
-                                                @break
-                                            @case("D")
-                                                Спиртосодержащие лекарства (валокордин, валосердин и тд)
-                                                @break
-                                            @case("P")
-                                                Физические нагрузки
-                                                @break
-                                            @case("N")
-                                                Ничего
-                                                @break
-                                        @endswitch
+                                        @for ($i = 0; $i < strlen($exam->bad_effects); $i++)
+                                            @switch($exam->bad_effects[$i])
+                                                @case("C")
+                                                    <li>Кофе</li>
+                                                    @break
+                                                @case("E")
+                                                    <li>Энергетические напитки</li>
+                                                    @break
+                                                @case("S")
+                                                    <li>Сигареты, кальян, сигары и тд</li>
+                                                    @break
+                                                @case("A")
+                                                    <li>Алкогольсодержащие напитки</li>
+                                                    @break
+                                                @case("D")
+                                                    <li>Спиртосодержащие лекарства (валокордин, валосердин и тд)</li>
+                                                    @break
+                                                @case("P")
+                                                    <li>Физические нагрузки</li>
+                                                    @break
+                                                @case("N")
+                                                    <li>Ничего</li>
+                                                    @break
+                                            @endswitch
+                                        @endfor
                                     </td>
                                     <td>
                                         <a href="{{ route('exams.show', $exam) }}">
